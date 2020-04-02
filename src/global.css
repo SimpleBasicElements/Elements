@@ -1,0 +1,55 @@
+
+:root {
+  --accent: #007bff;
+}
+
+body {
+  font-family: sans-serif;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  color: #212529;
+  background-color: #f7f7f7;
+}
+
+a {
+  color: var(--accent);
+}
+
+h2 {
+  font-size: 1.25rem;
+  font-weight: 300;
+}
+
+hr {
+  margin: 50px 0;
+  border:none;
+  border-bottom: 1px solid #00000020;
+}
+
+.card {
+  background-color: #fff;
+  padding: 16px;
+  border: 1px solid #00000020;
+  margin-bottom: 50px;
+}
+
+.card header {
+  background-color: #00000008;
+  border-bottom: 1px solid #00000020;
+  margin: -16px -16px 16px;
+  padding: 12px;
+  font-weight: bold;
+}
+
+.stack {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 16px;
+}
+
+pre {
+  padding: 10px;
+  background-color: #00000008;
+  border: solid 1px #00000020;
+}

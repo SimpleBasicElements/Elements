@@ -1,0 +1,41 @@
+.nav-pills {
+  display: flex;
+  justify-content: center;
+}
+
+.nav-pills > * {
+  padding: 8px 16px;
+  text-decoration: none;
+  border-radius: 3px;
+  border: none;
+  background: transparent;
+  color: var(--accent);
+  font-size: 1rem;
+}
+
+.nav-pills > *[aria-selected="true"] {
+  background: var(--accent);
+  color: #FFF;
+}
+
+.nav-pills > *:hover,
+.nav-pills > *:focus
+{
+  background: var(--accent) linear-gradient(to top, rgba(255,255,255,.5), rgba(255,255,255,.5));
+  color: #FFF;
+}
+
+#buttons [role="tabpanel"] {
+  overflow: hidden;
+  transition: .3s;
+}
+#buttons [role="tabpanel"][hidden="hidden"] {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+  transform: translateY(10px);
+  opacity: 0;
+}

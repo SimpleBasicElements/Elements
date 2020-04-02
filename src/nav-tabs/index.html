@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>Demo NavTabs</title>
+  <script defer>
+    window.autoDefineComponent = true
+  </script>
+  <script defer type="module">
+    import NavTabs from './index.js'
+  </script>
+  <link rel="stylesheet" href="/global.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Demo tabs</h1>
+
+<p>The goal of this component is to provide an unopinionated component to create tabs.</p>
+
+<hr>
+
+<article class="card" id="anchors">
+  <header>Tabs using links (with anchor support)</header>
+
+  <nav-tabs class="nav-pills">
+    <a href="#tab1">Tab 1</a>
+    <a href="#tab2">Tab 2</a>
+    <a href="#tab3" aria-selected="true">Tab 3</a>
+  </nav-tabs>
+
+  <div id="tab1" hidden="hidden">
+    <p>Lorem ipsum dolor <a href="https://github.com">github link</a> amet consectetur adipisicing elit. Corporis, quis
+      incidunt culpa vel aut repellendus pariatur at, sapiente, saepe mollitia magnam! Obcaecati eum quasi velit
+      architecto. Cupiditate esse perspiciatis veniam.</p>
+    <p>Consequuntur dolores accusantium eos consequatur consectetur aperiam totam praesentium maxime molestiae, et
+      eligendi hic itaque vel vero deserunt laborum quam debitis, placeat repellat quibusdam quo reprehenderit voluptas
+      minus facilis. Commodi!</p>
+  </div>
+  <div id="tab2" hidden="hidden">
+    <p>Eum libero nemo excepturi labore exercitationem et? Et, perspiciatis maiores ipsum nisi rerum expedita quos amet
+      optio corrupti illum exercitationem quasi numquam quae autem esse accusamus recusandae sint nulla magnam!</p>
+    <p>Hic temporibus eos placeat ex aperiam! Repellat illum dolorum veritatis. Culpa at facere repellendus maxime vero
+      voluptatibus beatae soluta in voluptates et explicabo repellat aspernatur, voluptas nihil quaerat tempore
+      natus!</p>
+  </div>
+  <div id="tab3">
+    <p>Aliquid ea doloribus eum exercitationem sunt! Reiciendis modi saepe nostrum ipsa laborum, laudantium natus
+      consequuntur sint, ratione nesciunt tenetur quo obcaecati velit porro! Repudiandae vel cum unde quia rem
+      similique.</p>
+    <p>I'm tab 3 content</p>
+  </div>
+</article>
+
+<article class="card" id="buttons">
+  <header>Tabs using buttons</header>
+
+  <nav-tabs class="nav-pills">
+    <button aria-controls="button-tab1" id="btntab1">Tab 1</button>
+    <button aria-controls="button-tab2" id="btntab2">Tab 2</button>
+    <button aria-controls="button-tab3" id="btntab3">Tab 3</button>
+  </nav-tabs>
+
+  <div class="tab-content" style="position: relative;">
+    <div id="button-tab1">
+      <p>Button tab content 1</p>
+    </div>
+    <div id="button-tab2">
+      <p>Button tab content 2</p>
+    </div>
+    <div id="button-tab3">
+      <p>Button tab content 3</p>
+    </div>
+  </div>
+</article>
+
+<hr>
+
+<h1>Style</h1>
+
+<p>Here is some help to get you started with styling this element</p>
+
+<pre>
+/* CSS Animation */
+[role="tabpanel"] {
+  overflow: hidden;
+  transition: .3s;
+}
+[role="tabpanel"][hidden="hidden"] {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+  transform: translateY(10px);
+  opacity: 0;
+}
+</pre>
+</body>
+</html>

@@ -1,0 +1,49 @@
+modal-dialog {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* animation: .4s fadeIn both; */
+
+  opacity: 1;
+  transition: .3s;
+}
+modal-dialog[hidden] {
+  opacity: 0;
+  transform: translateY(30px);
+  pointer-events: none;
+}
+/*
+modal-dialog[hidden] {
+  display: none;
+}
+*/
+modal-dialog .card {
+  max-width: 500px;
+  width: calc(100vw - 40px);
+  animation: .4s slideIn both;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

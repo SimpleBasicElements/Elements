@@ -14,7 +14,6 @@ export default class ModalDialog extends HTMLElement {
   }
 
   connectedCallback () {
-    document.addEventListener('keydown', this.onKeyDown)
     if (this.getAttribute('overlay-close') !== null) {
       this.addEventListener('click', e => {
         if (e.target === this) {
@@ -25,7 +24,7 @@ export default class ModalDialog extends HTMLElement {
   }
 
   disconnectedCallback () {
-
+    document.removeEventListener('keydown', this.onKeyDown)
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
@@ -35,12 +34,14 @@ export default class ModalDialog extends HTMLElement {
       if (firstInput) {
         firstInput.focus()
       }
+      document.addEventListener('keydown', this.onKeyDown)
     }
     if (name === 'hidden' && newValue === 'hidden') {
       if (this.previouslyFocusedElement !== null) {
         this.previouslyFocusedElement.focus()
       }
       this.previouslyFocusedElement = null
+      document.removeEventListener('keydown', this.onKeyDown)
     }
   }
 

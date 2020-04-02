@@ -1,5 +1,5 @@
 require('expect-puppeteer')
-const {wait} = require('../utils/jest')
+const {wait, getListenersFor} = require('../utils/jest')
 
 const dirname = require('path').basename(__dirname)
 
@@ -53,6 +53,18 @@ describe('#modal-dialog', () => {
       await modalBox.click()
       await expect(modalDialog).toBeVisible()
     })
+
+    it('should remove event when hidden', async () => {
+      await wait(200)
+      await page.mouse.click(5, 5)
+      expect(await getListenersFor(page, 'document')).toHaveLength(0)
+    })
+
+    it('should remove event when hidden', async () => {
+      await page.evaluate(_ => document.body.innerHTML = '')
+      expect(await getListenersFor(page, 'document')).toHaveLength(0)
+    })
+
   })
 
 })

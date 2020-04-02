@@ -1,4 +1,21 @@
 /**
+ * @param page
+ * @param {string} expression 
+ * @param {string} eventName 
+ */
+async function getListenersFor(page, expression, eventName = null) {
+  const client = await page.target().createCDPSession()
+  const element = await client.send("Runtime.evaluate", {expression});
+  const listeners = (await client.send('DOMDebugger.getEventListeners', {
+    objectId: element.result.objectId
+  })).listeners
+  if (eventName) {
+    return listeners.filter(l => l.type === eventName)
+  } 
+  return listeners
+}
+
+/**
  * Wait for nextAnimationFrame
  *
  * @param page
@@ -26,5 +43,6 @@ function wait (time) {
 
 module.exports = {
   nextAnimationFrame,
-  wait
+  wait,
+  getListenersFor
 }

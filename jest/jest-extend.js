@@ -1,9 +1,6 @@
-
-
-
 // Check if an element is visible
 expect.extend({
-
+  
   /**
    * @param {ElementHandle} received
    * @return {{pass: boolean, message: (function(): string)}|{pass: boolean, message: (function(): string)}}

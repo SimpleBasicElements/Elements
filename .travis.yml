@@ -1,0 +1,9 @@
+language: node_js
+node_js:
+  - 12
+  - 13
+  - "stable"
+before_script:
+  - yarn run build
+script:
+  - yarn run test

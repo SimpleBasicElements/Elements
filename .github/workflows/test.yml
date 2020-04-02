@@ -17,9 +17,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: yarn
       - name: test
-        run: |
-          yarn run serve
-          yarn run test
+        run: yarn run test
         env:
           CI: true
           NOVE_ENV: test

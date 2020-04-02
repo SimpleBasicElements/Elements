@@ -5,6 +5,9 @@
   "main": "src/index.js",
   "author": "jonathan",
   "license": "MIT",
+  "files": [
+    "src/**/*.js"
+  ],
   "devDependencies": {
     "@types/jest": "^25.1.4",
     "@types/jest-environment-puppeteer": "^4.3.1",

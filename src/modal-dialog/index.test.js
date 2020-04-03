@@ -1,5 +1,5 @@
 require('expect-puppeteer')
-const {wait, getListenersFor} = require('../utils/jest')
+const { wait, getListenersFor } = require('../utils/jest')
 
 const dirname = require('path').basename(__dirname)
 
@@ -8,14 +8,12 @@ beforeEach(async () => {
 })
 
 describe('#modal-dialog', () => {
-
   it('should not be visible by default', async () => {
     const modalDialog = await page.$('modal-dialog')
     await expect(modalDialog).not.toBeVisible()
   })
 
   describe('from dialog opened', () => {
-
     beforeEach(async () => {
       const modalDialog = await page.$('modal-dialog')
       const button = await page.$('#button')
@@ -44,10 +42,11 @@ describe('#modal-dialog', () => {
       const modalDialog = await page.$('modal-dialog')
       await wait(200)
       await page.mouse.click(5, 5)
+      await wait(200)
       await expect(modalDialog).not.toBeVisible()
     })
 
-    it('shouldn\'t hide modal on content click', async () => {
+    it("shouldn't hide modal on content click", async () => {
       const modalDialog = await page.$('modal-dialog')
       const modalBox = await page.$('#modal-box')
       await modalBox.click()
@@ -61,10 +60,8 @@ describe('#modal-dialog', () => {
     })
 
     it('should remove event when hidden', async () => {
-      await page.evaluate(_ => document.body.innerHTML = '')
+      await page.evaluate(_ => (document.body.innerHTML = ''))
       expect(await getListenersFor(page, 'document')).toHaveLength(0)
     })
-
   })
-
 })

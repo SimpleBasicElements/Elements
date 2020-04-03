@@ -16,10 +16,13 @@
     "jest": "^25.2.4",
     "jest-dev-server": "^4.4.0",
     "jest-puppeteer": "^4.4.0",
+    "prettier-standard": "^16.2.1",
     "puppeteer": "^2.1.1"
   },
   "scripts": {
     "serve": "http-server ./src -p 8080",
+    "format": "prettier-standard  '**/*.{js,css,html}' --format",
+    "lint": "prettier-standard  '**/*.{js,css,html}' --lint",
     "test": "jest"
   }
 }

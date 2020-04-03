@@ -1,10 +1,10 @@
-export function throttle(callback, delay) {
+export function throttle (callback, delay) {
   let last
   let timer
   return function () {
-    let context = this
-    let now = +new Date()
-    let args = arguments
+    const context = this
+    const now = +new Date()
+    const args = arguments
     if (last && now < last + delay) {
       clearTimeout(timer)
       timer = setTimeout(function () {

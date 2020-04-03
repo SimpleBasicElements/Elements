@@ -11,7 +11,7 @@ modal-dialog {
   /* animation: .4s fadeIn both; */
 
   opacity: 1;
-  transition: .3s;
+  transition: 0.3s;
 }
 modal-dialog[hidden] {
   opacity: 0;
@@ -26,7 +26,7 @@ modal-dialog[hidden] {
 modal-dialog .card {
   max-width: 500px;
   width: calc(100vw - 40px);
-  animation: .4s slideIn both;
+  animation: 0.4s slideIn both;
 }
 
 @keyframes slideIn {

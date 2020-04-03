@@ -2,8 +2,9 @@
  * @property {Element|null} previouslyFocusedElement Element focused before the opening of the modal
  */
 export default class ModalDialog extends HTMLElement {
-
-  static get observedAttributes() {return ['hidden']; }
+  static get observedAttributes () {
+    return ['hidden']
+  }
 
   constructor () {
     super()
@@ -27,7 +28,7 @@ export default class ModalDialog extends HTMLElement {
     document.removeEventListener('keydown', this.onKeyDown)
   }
 
-  attributeChangedCallback(name, oldValue, newValue) {
+  attributeChangedCallback (name, oldValue, newValue) {
     if (name === 'hidden' && newValue === null) {
       this.previouslyFocusedElement = document.activeElement
       const firstInput = this.querySelector('input, textarea, select')
@@ -57,10 +58,8 @@ export default class ModalDialog extends HTMLElement {
   close () {
     this.setAttribute('hidden', 'hidden')
   }
-
 }
 
 if (window.autoDefineComponent !== undefined) {
   customElements.define('modal-dialog', ModalDialog)
 }
-

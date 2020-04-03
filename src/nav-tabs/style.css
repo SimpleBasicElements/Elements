@@ -13,23 +13,23 @@
   font-size: 1rem;
 }
 
-.nav-pills > *[aria-selected="true"] {
+.nav-pills > *[aria-selected='true'] {
   background: var(--accent);
-  color: #FFF;
+  color: #fff;
 }
 
 .nav-pills > *:hover,
-.nav-pills > *:focus
-{
-  background: var(--accent) linear-gradient(to top, rgba(255,255,255,.5), rgba(255,255,255,.5));
-  color: #FFF;
+.nav-pills > *:focus {
+  background: var(--accent)
+    linear-gradient(to top, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5));
+  color: #fff;
 }
 
-#buttons [role="tabpanel"] {
+#buttons [role='tabpanel'] {
   overflow: hidden;
-  transition: .3s;
+  transition: 0.3s;
 }
-#buttons [role="tabpanel"][hidden="hidden"] {
+#buttons [role='tabpanel'][hidden='hidden'] {
   display: block;
   position: absolute;
   top: 0;

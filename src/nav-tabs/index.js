@@ -1,5 +1,4 @@
 export default class Tabs extends HTMLElement {
-
   constructor () {
     super()
     this.onHashChange = this.onHashChange.bind(this)
@@ -12,9 +11,10 @@ export default class Tabs extends HTMLElement {
     let currentTab = tabs[0]
 
     tabs.forEach((tab, i) => {
-      const id = tab.tagName === 'A' ?
-        tab.getAttribute('href').replace('#', '') :
-        tab.getAttribute('aria-controls')
+      const id =
+        tab.tagName === 'A'
+          ? tab.getAttribute('href').replace('#', '')
+          : tab.getAttribute('aria-controls')
       const tabpanel = document.getElementById(id)
 
       // Should the element be the current element ?
@@ -80,9 +80,9 @@ export default class Tabs extends HTMLElement {
    * Detects hashChange and activate the current tab if necessary
    */
   onHashChange () {
-    const tab = Array
-      .from(this.children)
-      .find(tab => tab.getAttribute('href') === window.location.hash)
+    const tab = Array.from(this.children).find(
+      tab => tab.getAttribute('href') === window.location.hash
+    )
     if (tab !== undefined) {
       this.activate(tab)
       document.querySelector(window.location.hash).scrollIntoView({
@@ -98,11 +98,12 @@ export default class Tabs extends HTMLElement {
   activate (tab, changeHash = true) {
     const currentTab = this.querySelector('[aria-selected="true"]')
     if (currentTab !== null) {
-      const tabpanel = document.getElementById(currentTab.getAttribute('aria-controls'))
+      const tabpanel = document.getElementById(
+        currentTab.getAttribute('aria-controls')
+      )
       currentTab.setAttribute('aria-selected', 'false')
       currentTab.setAttribute('tabindex', '-1')
       tabpanel.setAttribute('hidden', 'hidden')
-
     }
     const id = tab.getAttribute('aria-controls')
     const tabpanel = document.getElementById(id)
@@ -113,7 +114,6 @@ export default class Tabs extends HTMLElement {
       window.history.replaceState({}, '', '#' + id)
     }
   }
-
 }
 if (window.autoDefineComponent !== undefined) {
   customElements.define('nav-tabs', Tabs)

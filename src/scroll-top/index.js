@@ -1,7 +1,6 @@
-import {throttle} from '../utils/time.js'
+import { throttle } from '../utils/time.js'
 
 export default class ScrollTop extends HTMLElement {
-
   constructor () {
     super()
     this.onScroll = throttle(this.onScroll.bind(this), 100)
@@ -29,7 +28,6 @@ export default class ScrollTop extends HTMLElement {
       this.isVisible = false
     }
   }
-
 }
 if (window.autoDefineComponent !== undefined) {
   customElements.define('scroll-top', ScrollTop)

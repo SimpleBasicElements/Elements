@@ -1,7 +1,7 @@
 const { setup: setupDevServer } = require('jest-dev-server')
 const { setup: setupPuppeteer } = require('jest-environment-puppeteer')
 
-module.exports = async function globalSetup(globalConfig) {
+module.exports = async function globalSetup (globalConfig) {
   await setupPuppeteer(globalConfig)
   await setupDevServer({
     command: `npx http-server ./src -p 3000`,

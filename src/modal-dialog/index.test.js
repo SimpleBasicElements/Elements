@@ -63,5 +63,30 @@ describe('#modal-dialog', () => {
       await page.evaluate(_ => (document.body.innerHTML = ''))
       expect(await getListenersFor(page, 'document')).toHaveLength(0)
     })
+
+    it('should focus the last element on previous focus', async () => {
+      await page.keyboard.down('Shift')
+      await page.keyboard.press('Tab')
+      await page.keyboard.up('Shift')
+      const focusedElement = await page.evaluate(_ => document.activeElement.id)
+      expect(focusedElement).toBe('closebutton')
+    })
+
+    it('should focus the first element on next focus', async () => {
+      await page.keyboard.press('Tab')
+      await page.keyboard.press('Tab')
+      await page.keyboard.press('Tab')
+      await page.keyboard.press('Tab')
+      await page.keyboard.press('Tab')
+      const focusedElement = await page.evaluate(_ => document.activeElement.id)
+      expect(focusedElement).toBe('firstname')
+    })
+
+    it('should close the modal when clicking on the close button', async () => {
+      const closeButton = await page.$('[data-dismiss]')
+      const modalDialog = await page.$('modal-dialog')
+      await closeButton.click()
+      await expect(modalDialog).not.toBeVisible()
+    })
   })
 })

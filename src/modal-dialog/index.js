@@ -1,5 +1,6 @@
 /**
  * @property {Element|null} previouslyFocusedElement Element focused before the opening of the modal
+ * @property {array<HTMLDivElement>} trapElements
  */
 export default class ModalDialog extends HTMLElement {
   static get observedAttributes () {
@@ -9,29 +10,41 @@ export default class ModalDialog extends HTMLElement {
   constructor () {
     super()
     this.setAttribute('aria-modal', 'true')
+    this.setAttribute('role', 'dialog')
     this.close = this.close.bind(this)
     this.onKeyDown = this.onKeyDown.bind(this)
     this.previouslyFocusedElement = null
+    this.trapElements = []
   }
 
   connectedCallback () {
-    if (this.getAttribute('overlay-close') !== null) {
-      this.addEventListener('click', e => {
-        if (e.target === this) {
-          this.close()
-        }
-      })
-    }
+    this.addEventListener('click', e => {
+      if (
+        (e.target === this && this.getAttribute('overlay-close') !== null) ||
+        e.target.dataset.dismiss !== undefined ||
+        e.target.closest('[data-dismiss]') !== null
+      ) {
+        this.close()
+      }
+    })
+    this.createTrapFocusElement('afterbegin')
+    this.createTrapFocusElement('beforeend')
+    document.addEventListener('keydown', this.onKeyDown)
   }
 
   disconnectedCallback () {
     document.removeEventListener('keydown', this.onKeyDown)
+    this.trapElements.forEach(element =>
+      element.parentElement.removeChild(element)
+    )
+    this.trapElements = []
   }
 
   attributeChangedCallback (name, oldValue, newValue) {
+    console.log(name, oldValue, newValue)
     if (name === 'hidden' && newValue === null) {
       this.previouslyFocusedElement = document.activeElement
-      const firstInput = this.querySelector('input, textarea, select')
+      const firstInput = this.getFocusableElements()[0]
       if (firstInput) {
         firstInput.focus()
       }
@@ -57,6 +70,42 @@ export default class ModalDialog extends HTMLElement {
 
   close () {
     this.setAttribute('hidden', 'hidden')
+  }
+
+  /**
+   * Create an element used to trap focus inside the dialog
+   *
+   * @param position
+   */
+  createTrapFocusElement (position) {
+    const element = document.createElement('div')
+    element.setAttribute('tabindex', '0')
+    element.addEventListener('focus', () => {
+      const focusableElements = this.getFocusableElements()
+      if (focusableElements.length > 0) {
+        focusableElements[
+          position === 'afterbegin' ? focusableElements.length - 1 : 0
+        ].focus()
+      }
+    })
+    this.trapElements.push(element)
+    this.insertAdjacentElement(position, element)
+  }
+
+  /**
+   * @return array<Element>
+   */
+  getFocusableElements () {
+    const selector = `[href],
+      button:not([disabled]),
+      input:not([disabled]),
+      select:not([disabled]),
+      textarea:not([disabled]),
+      [tabindex]:not([tabindex="-1"]`
+    return Array.from(this.querySelectorAll(selector)).filter(element => {
+      const rect = element.getBoundingClientRect()
+      return rect.width > 0 && rect.height > 0
+    })
   }
 }
 

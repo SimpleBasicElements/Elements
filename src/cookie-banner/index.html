@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <title>Demo</title>
+    <script defer>
+      window.autoDefineComponent = true
+    </script>
+    <link rel="stylesheet" href="../global.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+
+    <cookie-banner id="banner" role="region" aria-labelledby="label" hidden="hidden">
+      <form action="">
+        <h2 id="label">Here is an annoying cookie banner</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus assumenda dicta eaque natus optio, possimus qui. Atque error exercitationem illo incidunt iste laboriosam nisi similique sit! Fuga laboriosam quaerat tempore!</p>
+        <p>
+          <input type="checkbox" disabled checked> Required cookie
+          <input type="checkbox" name="tracking" value="1"> Tracking cookies
+        </p>
+        <p>
+          <button data-accept>I accept</button>
+          <button data-reject>I refuse</button>
+        </p>
+      </form>
+    </cookie-banner>
+
+    <h1>Demo Cookie banner</h1>
+
+    <p>This component displays a cookie banner and emit events on accept or refusal of the cookie.</p>
+
+    <button id="clear">Clear my consent</button>
+
+    <h3>Event triggered</h3>
+    <pre id="debug">
+
+    </pre>
+
+    <h3>event.detail</h3>
+    <pre id="detail">
+
+    </pre>
+
+    <h3>Consent status</h3>
+    <pre id="status">
+
+    </pre>
+
+    <script type="module">
+      import CookieBanner from './index.js'
+
+      if (document.getElementById('banner')) {
+        const debug = document.getElementById('debug')
+        const detail = document.getElementById('detail')
+        document.getElementById('banner').addEventListener('accept', function (e) {
+          debug.innerHTML = 'accept'
+          detail.innerHTML = JSON.stringify(e.detail)
+          document.getElementById('status').innerHTML = 'accepted with params ' + JSON.stringify(e.detail)
+        })
+        document.getElementById('banner').addEventListener('reject', function (e) {
+          debug.innerHTML = 'reject'
+          detail.innerHTML = JSON.stringify(e.detail)
+        })
+      }
+      document.getElementById('clear').addEventListener('click', function (e) {
+        document.cookie = CookieBanner.cookieName + '= ; expires = Thu, 01 Jan 1970 00:00:00 GMT; path=/'
+        document.location.reload();
+      })
+
+      const consent = CookieBanner.hasConsent()
+      document.getElementById('status').innerHTML = consent !== false ? 'accepted with params ' + JSON.stringify(consent) : 'no consent'
+    </script>
+  </body>
+</html>

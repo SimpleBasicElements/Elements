@@ -3,7 +3,7 @@ name: Publish
 on:
   push:
     tags:
-      - 1.*
+      - 0.*
 
 jobs:
   build:
@@ -18,11 +18,10 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: yarn
-      - run: yarn run build
       - name: test
-        run: |
-          yarn run serve
-          yarn run test
+        run: yarn run lint
+      - name: test
+        run: yarn run test
         env:
           CI: true
           NOVE_ENV: test

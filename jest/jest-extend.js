@@ -30,5 +30,25 @@ expect.extend({
         pass: false
       }
     }
+  },
+
+  /**
+   * @param {string} received
+   * @param {string} html
+   * @return {{pass: boolean, message: (function(): string)}|{pass: boolean, message: (function(): string)}}
+   */
+  async toHaveHTML (received, expectedHTML) {
+    const html = await (await page.$(received)).evaluate(e => e.innerHTML)
+    const pass = html === expectedHTML
+
+    return {
+      pass,
+      message: () => {
+        return this.utils.matcherHint('toHaveHTML', received, expectedHTML) +
+          '\n\n' +
+          `Expected: ${this.utils.printExpected(expectedHTML)}\n` +
+          `Received: ${this.utils.printReceived(html)}`;
+      }
+    }
   }
 })

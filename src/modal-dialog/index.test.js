@@ -10,7 +10,7 @@ beforeEach(async () => {
 describe('#modal-dialog', () => {
   it('should not be visible by default', async () => {
     const modalDialog = await page.$('modal-dialog')
-    await expect(modalDialog).not.toBeVisible()
+    await expect(modalDialog).toBeHidden()
   })
 
   describe('from dialog opened', () => {
@@ -29,7 +29,7 @@ describe('#modal-dialog', () => {
     it('should close the dialog on Escape', async () => {
       await page.keyboard.press('Escape')
       const modalDialog = await page.$('modal-dialog')
-      await expect(modalDialog).not.toBeVisible()
+      await expect(modalDialog).toBeHidden()
     })
 
     it('should focus the previously focused element', async () => {
@@ -43,7 +43,7 @@ describe('#modal-dialog', () => {
       await wait(200)
       await page.mouse.click(5, 5)
       await wait(200)
-      await expect(modalDialog).not.toBeVisible()
+      await expect(modalDialog).toBeHidden()
     })
 
     it("shouldn't hide modal on content click", async () => {
@@ -86,7 +86,7 @@ describe('#modal-dialog', () => {
       const closeButton = await page.$('[data-dismiss]')
       const modalDialog = await page.$('modal-dialog')
       await closeButton.click()
-      await expect(modalDialog).not.toBeVisible()
+      await expect(modalDialog).toBeHidden()
     })
   })
 })

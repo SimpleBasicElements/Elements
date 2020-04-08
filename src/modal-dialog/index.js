@@ -49,12 +49,14 @@ export default class ModalDialog extends HTMLElement {
         firstInput.focus()
       }
       document.addEventListener('keydown', this.onKeyDown)
+      this.removeAttribute('aria-hidden')
     }
     if (name === 'hidden' && newValue === 'hidden') {
       if (this.previouslyFocusedElement !== null) {
         this.previouslyFocusedElement.focus()
       }
       this.previouslyFocusedElement = null
+      this.setAttribute('aria-hidden', 'true')
       document.removeEventListener('keydown', this.onKeyDown)
     }
   }

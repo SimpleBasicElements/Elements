@@ -11,10 +11,11 @@ The goal of this project is to create a library of CustomElement to stop reinven
 - [modal-dialog](https://simplebasicelements.github.io/Elements/src/modal-dialog)
 - [nav-tabs](https://simplebasicelements.github.io/Elements/src/nav-tabs)
 - [scroll-top](https://simplebasicelements.github.io/Elements/src/scroll-top)
+- [cookie-banner](https://simplebasicelements.github.io/Elements/src/cookie-banner)
 
 ## Todo
 
-- [ ] Write this readme
-- [ ] Prettier / Linter ?
+- [x] Write this readme
+- [x] Prettier / Linter ?
 - [ ] Static analysis ?
 - [ ] Contribution guidelines

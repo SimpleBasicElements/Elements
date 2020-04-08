@@ -11,6 +11,11 @@ beforeEach(async () => {
 })
 
 describe('#cookie-banner', () => {
+  it('should hide on action', async () => {
+    await page.keyboard.press('Tab')
+    await page.keyboard.press('Escape')
+    await expect('#banner').toBeHidden()
+  })
   it('should reject on escape', async () => {
     await page.keyboard.press('Tab')
     await page.keyboard.press('Escape')

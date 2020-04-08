@@ -1,6 +1,6 @@
 {
   "name": "@sb-elements/all",
-  "version": "0.2",
+  "version": "0.2.0",
   "description": "Library of unopinionated components",
   "main": "src/index.js",
   "author": "jonathan",

@@ -5,9 +5,9 @@
  * @param {string} elements
  * @param {function} callback
  */
-function addEventListeners(elements, eventName, callback) {
+function addEventListeners (elements, eventName, callback) {
   Array.from(elements).forEach(function (el) {
-    el.addEventListener(eventName,function (e) {
+    el.addEventListener(eventName, function (e) {
       e.preventDefault()
       callback()
     })
@@ -18,24 +18,25 @@ function addEventListeners(elements, eventName, callback) {
  * @param {object} value
  */
 function writeCookie (value) {
-  document.cookie = `${CookieBanner.cookieName}=${JSON.stringify(value)};max-age=${CookieBanner.expires};path=${CookieBanner.path}`;
+  document.cookie = `${CookieBanner.cookieName}=${JSON.stringify(
+    value
+  )};max-age=${CookieBanner.expires};path=${CookieBanner.path}`
 }
 
 /**
  * @param {object} value
  */
 function readCookie () {
-  const prefix = CookieBanner.cookieName + "="
+  const prefix = CookieBanner.cookieName + '='
   for (const cookie of document.cookie.split(/; */)) {
     if (cookie.startsWith(prefix)) {
-      return JSON.parse(cookie.replace(prefix, ""))
+      return JSON.parse(cookie.replace(prefix, ''))
     }
   }
-  return null;
+  return null
 }
 
 export default class CookieBanner extends HTMLElement {
-
   static cookieName = 'cookieConsent'
   static expires = 31104000000
   static path = '/'
@@ -55,9 +56,21 @@ export default class CookieBanner extends HTMLElement {
     this.setAttribute('role', 'dialog')
     this.setAttribute('aria-live', 'polite')
     this.addEventListener('keydown', this.onKeyDown.bind(this))
-    addEventListeners(this.querySelectorAll('[data-accept]'), 'click', this.accept.bind(this))
-    addEventListeners(this.querySelectorAll('[data-reject]'), 'click', this.reject.bind(this))
-    addEventListeners(this.querySelectorAll('form'), 'submit', this.accept.bind(this))
+    addEventListeners(
+      this.querySelectorAll('[data-accept]'),
+      'click',
+      this.accept.bind(this)
+    )
+    addEventListeners(
+      this.querySelectorAll('[data-reject]'),
+      'click',
+      this.reject.bind(this)
+    )
+    addEventListeners(
+      this.querySelectorAll('form'),
+      'submit',
+      this.accept.bind(this)
+    )
   }
 
   disconnectedCallback () {
@@ -86,9 +99,11 @@ export default class CookieBanner extends HTMLElement {
     if (form !== null) {
       detail = Object.fromEntries(new FormData(form).entries())
     }
-    this.dispatchEvent(new CustomEvent('accept', {
-      detail
-    }))
+    this.dispatchEvent(
+      new CustomEvent('accept', {
+        detail
+      })
+    )
     writeCookie(detail)
     this.hide()
   }
@@ -112,7 +127,6 @@ export default class CookieBanner extends HTMLElement {
     }
     return cookie
   }
-
 }
 
 if (window.autoDefineComponent !== undefined) {

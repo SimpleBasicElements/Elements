@@ -19,14 +19,16 @@ Or you can use a form for multi level cookie acceptance.
 ```html
 <cookie-banner>
   <p>Whatever content you may want</p>
+  <form action="">
   <p>
-    <input type="checkbox" disabled checked> Required cookie
-    <input type="checkbox" name="tracking" value="1" checked> Tracking cookies
-  </p>
-  <p>
-    <button data-accept>I accept</button>
-    <button data-reject>I refuse</button>
-  </p>
+      <input type="checkbox" disabled checked> Required cookie
+      <input type="checkbox" name="tracking" value="1" checked> Tracking cookies
+    </p>
+    <p>
+      <button data-accept>I accept</button>
+      <button data-reject>I refuse</button>
+    </p>
+  </form>
 </cookie-banner>
 ```
 

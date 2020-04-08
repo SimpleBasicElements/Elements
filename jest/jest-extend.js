@@ -44,10 +44,12 @@ expect.extend({
     return {
       pass,
       message: () => {
-        return this.utils.matcherHint('toHaveHTML', received, expectedHTML) +
+        return (
+          this.utils.matcherHint('toHaveHTML', received, expectedHTML) +
           '\n\n' +
           `Expected: ${this.utils.printExpected(expectedHTML)}\n` +
-          `Received: ${this.utils.printReceived(html)}`;
+          `Received: ${this.utils.printReceived(html)}`
+        )
       }
     }
   }

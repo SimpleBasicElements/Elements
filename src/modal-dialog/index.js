@@ -41,7 +41,6 @@ export default class ModalDialog extends HTMLElement {
   }
 
   attributeChangedCallback (name, oldValue, newValue) {
-    console.log(name, oldValue, newValue)
     if (name === 'hidden' && newValue === null) {
       this.previouslyFocusedElement = document.activeElement
       const firstInput = this.getFocusableElements()[0]

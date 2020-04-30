@@ -12,10 +12,4 @@ The goal of this project is to create a library of CustomElement to stop reinven
 - [nav-tabs](https://simplebasicelements.github.io/Elements/src/nav-tabs)
 - [scroll-top](https://simplebasicelements.github.io/Elements/src/scroll-top)
 - [cookie-banner](https://simplebasicelements.github.io/Elements/src/cookie-banner)
-
-## Todo
-
-- [x] Write this readme
-- [x] Prettier / Linter ?
-- [ ] Static analysis ?
-- [ ] Contribution guidelines
+- [textarea-autogrow](https://simplebasicelements.github.io/Elements/src/textarea-autogrow)

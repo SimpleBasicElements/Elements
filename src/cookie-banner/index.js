@@ -37,9 +37,6 @@ function readCookie () {
 }
 
 export default class CookieBanner extends HTMLElement {
-  static cookieName = 'cookieConsent'
-  static expires = 31104000000
-  static path = '/'
 
   connectedCallback () {
     if (readCookie() !== null) {
@@ -128,6 +125,10 @@ export default class CookieBanner extends HTMLElement {
     return cookie
   }
 }
+
+CookieBanner.cookieName = 'cookieConsent'
+CookieBanner.expires = 31104000000
+CookieBanner.path = '/'
 
 if (window.autoDefineComponent !== undefined) {
   customElements.define('cookie-banner', CookieBanner)

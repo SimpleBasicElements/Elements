@@ -9,8 +9,6 @@ export default class ModalDialog extends HTMLElement {
 
   constructor () {
     super()
-    this.setAttribute('aria-modal', 'true')
-    this.setAttribute('role', 'dialog')
     this.close = this.close.bind(this)
     this.onKeyDown = this.onKeyDown.bind(this)
     this.previouslyFocusedElement = null
@@ -18,6 +16,8 @@ export default class ModalDialog extends HTMLElement {
   }
 
   connectedCallback () {
+    this.setAttribute('aria-modal', 'true')
+    this.setAttribute('role', 'dialog')
     this.addEventListener('click', e => {
       if (
         (e.target === this && this.getAttribute('overlay-close') !== null) ||
@@ -71,6 +71,9 @@ export default class ModalDialog extends HTMLElement {
 
   close () {
     this.setAttribute('hidden', 'hidden')
+    this.dispatchEvent(new CustomEvent('close', {
+      detail: {close: true}
+    }))
   }
 
   /**

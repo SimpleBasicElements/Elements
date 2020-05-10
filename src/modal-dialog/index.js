@@ -70,10 +70,14 @@ export default class ModalDialog extends HTMLElement {
   }
 
   close () {
-    this.setAttribute('hidden', 'hidden')
-    this.dispatchEvent(new CustomEvent('close', {
-      detail: {close: true}
-    }))
+    const event = new CustomEvent('close', {
+      detail: {close: true},
+      cancelable: true
+    })
+    this.dispatchEvent(event)
+    if (!event.defaultPrevented) {
+      this.setAttribute('hidden', 'hidden')
+    }
   }
 
   /**

@@ -88,5 +88,15 @@ describe('#modal-dialog', () => {
       await closeButton.click()
       await expect(modalDialog).toBeHidden()
     })
+
+    it('should not hide the modal if event prevented', async () => {
+      const closeButton = await page.$('[data-dismiss]')
+      const modalDialog = await page.$('modal-dialog')
+      await modalDialog.evaluate(modal => {
+        modal.addEventListener('close', e => e.preventDefault())
+      })
+      await closeButton.click()
+      await expect(modalDialog).not.toBeHidden()
+    })
   })
 })

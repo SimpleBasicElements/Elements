@@ -1,0 +1,96 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import ScrollTop from './index';
+import './story.css'
+import CookieBanner from './index'
+
+<Meta title="Elements/cookie-banner" id="cookiebanner" argTypes={{
+  onAccept: { action: 'onAccept' },
+  onReject: { action: 'onReject' },
+}}/>
+
+# Cookie banner elements `<cookie-banner>`
+
+This component displays a cookie banner and emit events when the cookie is accepted or refused.
+
+### Usage
+
+You can have a simple accept / reject cookie banner
+
+```html
+<cookie-banner>
+  <p>Whatever content you may want</p>
+  <button data-accept>I accept</button>
+  <button data-reject>I refuse</button>
+</cookie-banner>
+```
+
+Or you can use a form for multi level cookie acceptance. The FormData will be stored in the cookie
+
+```html
+<cookie-banner>
+  <p>Whatever content you may want</p>
+  <form action="">
+    <p>
+      <input type="checkbox" disabled checked> Required cookie
+        <input type="checkbox" name="tracking" value="1" checked> Tracking cookies
+    </p>
+    <p>
+      <button data-accept>I accept</button>
+      <button data-reject>I refuse</button>
+    </p>
+  </form>
+</cookie-banner>
+```
+
+export const Template = ({ label, ...args }) => {
+  try {
+    customElements.define('cookie-banner', CookieBanner)
+  } catch (e) {
+    // do nothing this is custom elements
+  }
+  const div = document.createElement('div')
+  div.innerHTML = `
+   <cookie-banner
+      id="banner"
+      role="region"
+      aria-labelledby="label"
+      hidden="hidden"
+    >
+      <form action="">
+        <h2 id="label">Here is an annoying cookie banner</h2>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus
+          assumenda dicta eaque natus optio, possimus qui. Atque error
+          exercitationem illo incidunt iste laboriosam nisi similique sit! Fuga
+          laboriosam quaerat tempore!
+        </p>
+        <p>
+          <input type="checkbox" disabled checked /> Required cookie
+          <input type="checkbox" name="tracking" value="1" /> Tracking cookies
+        </p>
+        <p>
+          <button data-accept>I accept</button>
+          <button data-reject>I refuse</button>
+        </p>
+      </form>
+    </cookie-banner>
+    <div style="margin: 20px 0; text-align: right"><button type="reset">Reset my cookies</button></div>
+  `
+  const reset = div.querySelector('button[type="reset"]')
+  reset.addEventListener('click', () => {
+    document.cookie =
+      CookieBanner.cookieName +
+      '= ; expires = Thu, 01 Jan 1970 00:00:00 GMT; path=/'
+    document.location.reload()
+  })
+  const banner = div.querySelector('cookie-banner')
+  banner.addEventListener('accept', args.onAccept)
+  banner.addEventListener('reject', args.onReject)
+  return div
+};
+
+<Canvas>
+  <Story name="Default">
+    {Template.bind({})}
+  </Story>
+</Canvas>

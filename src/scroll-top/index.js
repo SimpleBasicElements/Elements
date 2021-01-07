@@ -1,5 +1,8 @@
 import { throttle } from '../utils/time.js'
 
+/**
+ * This is some informations
+ */
 export default class ScrollTop extends HTMLElement {
   constructor () {
     super()
@@ -9,7 +12,10 @@ export default class ScrollTop extends HTMLElement {
 
   connectedCallback () {
     this.addEventListener('click', () => {
-      window.scrollTo(0, 0)
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      })
     })
     window.addEventListener('scroll', this.onScroll)
   }

@@ -1,0 +1,98 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import NavTabs from './index';
+import './story.css'
+
+<Meta title="Elements/nav-tabs" id="navtabs" argTypes={{
+  button: {control: 'boolean', defaultValue: false}
+}}/>
+
+# nav-tabs
+
+The goal of this component is to provide an unopinionated component to
+create tabs.
+
+### With links
+
+You can use regular links (with anchors) to control what element to display
+
+```html
+<nav-tabs class="nav-pills">
+  <a href="#tab1">Tab 1</a>
+  <a href="#tab2">Tab 2</a>
+  <a href="#tab3" aria-selected="true">Tab 3</a>
+</nav-tabs>
+```
+
+export const Template = ({ label, button = false }) => {
+  const suffix = button ? 'button' : 'link';
+  try {
+    customElements.define('nav-tabs', NavTabs)
+  } catch (e) {
+    // do nothing this is custom elements
+  }
+  return `
+<nav-tabs class="nav-pills">
+${button ?
+    `
+<button aria-controls="tab1${suffix}" id="btntab1" aria-selected="true">Tab 1</button>
+<button aria-controls="tab2${suffix}" id="btntab2">Tab 2</button>
+<button aria-controls="tab3${suffix}" id="btntab3">Tab 3</button>
+    ` :
+    `
+<a href="#tab1${suffix}">Tab 1</a>
+<a href="#tab2${suffix}">Tab 2</a>
+<a href="#tab3${suffix}" aria-selected="true">Tab 3</a>
+    `
+}
+</nav-tabs>
+<div id="tab1${suffix}" hidden="hidden">
+  <p>
+    Lorem ipsum dolor <a href="https://github.com">github link</a> amet
+    consectetur adipisicing elit. Corporis, quis incidunt culpa vel aut
+    repellendus pariatur at, sapiente, saepe mollitia magnam! Obcaecati
+    eum quasi velit architecto. Cupiditate esse perspiciatis veniam.
+  </p>
+</div>
+<div id="tab2${suffix}" hidden="hidden">
+  <p>
+    Eum libero nemo excepturi labore exercitationem et? Et, perspiciatis
+    maiores ipsum nisi rerum expedita quos amet optio corrupti illum
+    exercitationem quasi numquam quae autem esse accusamus recusandae sint
+    nulla magnam!
+  </p>
+</div>
+<div id="tab3${suffix}">
+  <p>
+    Aliquid ea doloribus eum exercitationem sunt! Reiciendis modi saepe
+    nostrum ipsa laborum, laudantium natus consequuntur sint, ratione
+    nesciunt tenetur quo obcaecati velit porro! Repudiandae vel cum unde
+    quia rem similique.
+  </p>
+  <p>I'm tab 3 content</p>
+</div>
+`
+};
+
+<Canvas>
+  <Story name="Default">
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+### With buttons
+
+You can also use buttons (if you don't want anchors navigation).
+
+```html
+<nav-tabs class="nav-pills">
+  <button aria-controls="tab1" id="btntab1">Tab 1</button>
+  <button aria-controls="tab2" id="btntab2" aria-selected="true">Tab 2</button>
+  <button aria-controls="tab3" id="btntab3">Tab 3</button>
+</nav-tabs>
+```
+
+<Canvas>
+  <Story name="WithButtons" args={{button: true}}>
+    {Template.bind({})}
+  </Story>
+</Canvas>

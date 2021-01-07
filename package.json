@@ -1,6 +1,6 @@
 {
   "name": "@sb-elements/all",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "Library of unopinionated components",
   "main": "src/index.js",
   "author": "jonathan",
@@ -9,20 +9,32 @@
     "src/**/*.js"
   ],
   "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@storybook/addon-actions": "^6.1.11",
+    "@storybook/addon-docs": "^6.1.11",
+    "@storybook/addon-essentials": "^6.1.11",
+    "@storybook/addon-links": "^6.1.11",
+    "@storybook/html": "^6.1.11",
     "@types/jest": "^25.1.4",
     "@types/jest-environment-puppeteer": "^4.3.1",
     "@types/puppeteer": "^2.0.1",
+    "babel-loader": "^8.2.2",
+    "gh-pages": "^3.1.0",
     "http-server": "^0.12.1",
     "jest": "^25.2.4",
     "jest-dev-server": "^4.4.0",
     "jest-puppeteer": "^4.4.0",
     "prettier-standard": "^16.2.1",
-    "puppeteer": "^2.1.1"
+    "puppeteer": "^5.5.0"
   },
   "scripts": {
     "serve": "http-server ./src -p 8080",
     "format": "prettier-standard  '**/*.{js,css,html}' --format",
     "lint": "prettier-standard  '**/*.{js,css,html}' --lint",
-    "test": "jest"
+    "test": "jest",
+    "storybook": "start-storybook -p 6006 --quiet --ci",
+    "build-storybook": "build-storybook",
+    "gh": "npm run build-storybook && gh-pages -d storybook-static"
+
   }
 }

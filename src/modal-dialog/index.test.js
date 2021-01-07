@@ -4,7 +4,7 @@ const { wait, getListenersFor } = require('../utils/jest')
 const dirname = require('path').basename(__dirname)
 
 beforeEach(async () => {
-  await page.goto(`http://localhost:3000/${dirname}`)
+  await page.goto(`http://localhost:6006/iframe.html?id=modaldialog--default&viewMode=story`)
 })
 
 describe('#modal-dialog', () => {
@@ -54,14 +54,16 @@ describe('#modal-dialog', () => {
     })
 
     it('should remove event when hidden', async () => {
+      const baseLength = (await getListenersFor(page, 'document')).length
       await wait(200)
       await page.mouse.click(5, 5)
-      expect(await getListenersFor(page, 'document')).toHaveLength(0)
+      expect(await getListenersFor(page, 'document')).toHaveLength(baseLength - 1)
     })
 
     it('should remove event when hidden', async () => {
+      const baseLength = (await getListenersFor(page, 'document')).length
       await page.evaluate(_ => (document.body.innerHTML = ''))
-      expect(await getListenersFor(page, 'document')).toHaveLength(0)
+      expect(await getListenersFor(page, 'document')).toHaveLength(baseLength - 1)
     })
 
     it('should focus the last element on previous focus', async () => {

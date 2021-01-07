@@ -25,17 +25,3 @@
   color: #fff;
 }
 
-#buttons [role='tabpanel'] {
-  overflow: hidden;
-  transition: 0.3s;
-}
-#buttons [role='tabpanel'][hidden='hidden'] {
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  pointer-events: none;
-  transform: translateY(10px);
-  opacity: 0;
-}

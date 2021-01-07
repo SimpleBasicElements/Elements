@@ -1,0 +1,90 @@
+import { Meta, Story, Canvas, ArgsTable } from '@storybook/addon-docs/blocks';
+import ModalDialog from './index';
+import './story.css'
+
+export const Template = ({ label, overlayClose = true }) => {
+  try {
+    customElements.define('modal-dialog', ModalDialog)
+  } catch (e) {
+    // do nothing this is custom elements
+  }
+  return `
+<div>
+  <label for="fake">Fake field</label>
+  <input type="text" name="fake" id="fake" />
+</div>
+<button
+  id="button"
+  onclick="document.querySelector('modal-dialog').removeAttribute('hidden')"
+>
+  show dialog
+</button>
+<modal-dialog hidden="hidden" ${overlayClose ? 'overlay-close' : ''}>
+  <div class="card" id="modal-box">
+    <header>Demonstration</header>
+    <form action="" class="stack">
+      <div>
+        <label for="firstname">Firstname</label>
+        <input type="text" name="firstname" id="firstname" />
+      </div>
+      <div>
+        <label for="lastname">Lastname</label>
+        <input type="text" name="lastname" id="lastname" />
+      </div>
+    </form>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad autem
+      corporis delectus deserunt doloremque fuga fugit hic in magni
+      molestiae, nesciunt nisi optio rem, sint tempore velit vero?
+      Architecto, consequatur.
+    </p>
+    <footer>
+      <button data-dismiss>Cancel</button>
+      <button data-dismiss id="okbutton">Ok</button>
+    </footer>
+    <button
+      data-dismiss
+      aria-label="Close"
+      class="modal-close"
+      id="closebutton"
+    >
+      x
+    </button>
+  </div>
+</modal-dialog>
+`
+};
+
+<Meta title="Elements/modal-dialog" id="modaldialog" argTypes={{
+  overlayClose: {name: 'overlay-close', control: 'boolean', default: true}
+}}/>
+
+# modal-dialog
+
+### Usage
+
+```html
+<modal-dialog hidden="hidden" overlay-close>
+  <div>
+    Modal content
+    <button data-dismiss>Close</button>
+  </div>
+</modal-dialog>
+```
+
+Every element with `data-dismiss` will automatically close the modal
+
+### Attributes
+
+| Attribute       | Type     | Description                                          |
+|-----------------|----------|------------------------------------------------------|
+| overlay-close   | boolean  | Hide the modal when you click on the overlay         |
+| hidden          | boolean  | Visibility
+
+### Demo
+
+<Canvas>
+  <Story name="Default" args={{overlayClose: true}}>
+    {Template.bind({})}
+  </Story>
+</Canvas>

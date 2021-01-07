@@ -1,0 +1,32 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import TextareaAutogrow from './index';
+import './story.css'
+
+<Meta title="Elements/textarea-autogrow" id="textareaautogrow" />
+
+# textarea-autogrow
+
+This textarea will autogrow if the content overflow the initial height (it's triggered on focus)
+
+```html
+<textarea name="content" id="content" is="textarea-autogrow">A long text here</textarea>
+```
+
+export const Template = ({ label, ...args }) => {
+  try {
+    customElements.define('textarea-autogrow', TextareaAutogrow, { extends: 'textarea' })
+  } catch (e) {
+    // do nothing this is custom elements
+  }
+  return `<textarea name="content" id="content" is="textarea-autogrow">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse hendrerit vitae metus et pharetra. Etiam lacinia orci ac iaculis rhoncus. Integer in quam semper, dapibus ex sed, varius ligula. Vivamus mollis ipsum et leo malesuada, vel venenatis ex rhoncus. Cras libero sem, tempus at tellus quis, tincidunt convallis ex. Nulla semper nibh sit amet pulvinar pellentesque. Sed nec sodales nunc, vel varius ex. Vestibulum vel lacus in magna eleifend maximus in et tellus. Suspendisse potenti.
+Nullam in massa ex. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Integer et lectus leo. Sed vehicula mi ultricies, lobortis ipsum sed, pellentesque turpis. Mauris tempor lacinia turpis nec laoreet. Nulla lobortis eu est sed mattis. Donec sed ornare elit. Sed at turpis eget metus semper cursus.\n
+Sed vehicula, ex eu scelerisque porttitor, est felis sodales felis, ut semper mauris tellus eu dolor. Sed vitae aliquet mi. Morbi tempus augue ut eleifend luctus. Praesent tempor gravida tincidunt. Donec eleifend pellentesque interdum. Ut justo ligula, interdum eget velit a, viverra commodo purus. Vivamus placerat bibendum tincidunt. Nunc eget efficitur velit, porttitor rhoncus libero. Morbi ut ex id lectus porta posuere.
+Phasellus semper, velit ac posuere egestas, enim dui dignissim dui, nec pellentesque nunc sapien ut dui. Suspendisse ac ornare mi, vitae elementum augue. Sed ac pharetra mi. Morbi quis consectetur ante. Proin cursus erat nec nunc volutpat ultrices. Nulla nulla libero, vehicula hendrerit elementum nec, commodo eget tellus. Vivamus aliquet orci felis, vitae elementum nisl aliquam sed. In hac habitasse platea dictumst. Aenean faucibus vel mi id aliquet. Aliquam pharetra diam quis urna ornare gravida. Aliquam erat volutpat.\n
+Cras rhoncus velit augue, vel laoreet odio mattis non. Vivamus consectetur lorem eget ullamcorper consequat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam eleifend, felis ac varius laoreet, diam ipsum pretium turpis, vitae interdum tortor elit eu dolor. Nulla blandit mi sed ullamcorper eleifend. Sed luctus maximus est, quis porttitor justo viverra ut. Ut ipsum enim, interdum et molestie tempus, facilisis quis libero. Suspendisse ultrices augue ac maximus viverra. Suspendisse non feugiat leo. Mauris ac lectus non turpis aliquam faucibus nec in ante. Maecenas tempus, quam ac ullamcorper dictum, velit sapien consectetur arcu, vitae luctus urna lectus a leo. In id nulla a nulla vehicula tincidunt et quis ex.</textarea>`
+};
+
+<Canvas>
+  <Story name="Default">
+    {Template.bind({})}
+  </Story>
+</Canvas>

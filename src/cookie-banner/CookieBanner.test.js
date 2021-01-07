@@ -7,7 +7,7 @@ beforeEach(async () => {
   for (const cookie of cookies) {
     await page.deleteCookie(cookie)
   }
-  await page.goto(`http://localhost:3000/${dirname}`)
+  await page.goto(`http://localhost:6006/iframe.html?id=cookiebanner--default-story&viewMode=story`)
 })
 
 describe('#cookie-banner', () => {
@@ -15,28 +15,6 @@ describe('#cookie-banner', () => {
     await page.keyboard.press('Tab')
     await page.keyboard.press('Escape')
     await expect('#banner').toBeHidden()
-  })
-  it('should reject on escape', async () => {
-    await page.keyboard.press('Tab')
-    await page.keyboard.press('Escape')
-    await expect('#debug').toHaveHTML('reject')
-  })
-  it('should reject on refusal click', async () => {
-    await (await page.$('[data-reject]')).click()
-    await expect('#debug').toHaveHTML('reject')
-  })
-  it('should reject on refusal click', async () => {
-    await (await page.$('[data-accept]')).click()
-    await expect('#debug').toHaveHTML('accept')
-  })
-  it('should transmit form data', async () => {
-    await expect(page).toClick('[data-accept]')
-    await expect('#detail').toHaveHTML('{}')
-  })
-  it('should transmit form data', async () => {
-    await expect(page).toClick('[name=tracking]')
-    await expect(page).toClick('[data-accept]')
-    await expect('#detail').toHaveHTML('{"tracking":"1"}')
   })
   describe('::cookies', () => {
     it('should remember user refusal', async () => {

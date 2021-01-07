@@ -1,0 +1,12 @@
+cookie-banner {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  margin-top: auto;
+}
+
+cookie-banner[hidden] {
+  display: none;
+}

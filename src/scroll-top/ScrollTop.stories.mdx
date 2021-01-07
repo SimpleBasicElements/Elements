@@ -1,0 +1,34 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import ScrollTop from './index';
+import './story.css'
+
+<Meta title="Elements/scroll-top" id="scrolltop" />
+
+# scroll-top
+
+The goal of this component is to provide an unopinionated component to
+scroll back to the top of the page.
+
+```html
+<scroll-top hidden>
+  <button>Back to top</button>
+</scroll-top>
+```
+
+export const Template = ({ label, ...args }) => {
+  try {
+    customElements.define('scroll-top', ScrollTop)
+  } catch (e) {
+    // do nothing this is custom elements
+  }
+  return `
+    <div class="container">Scroll Me</div>
+    <scroll-top class="scrolltop" hidden>v</scroll-top>
+`
+};
+
+<Canvas>
+  <Story name="Default">
+    {Template.bind({})}
+  </Story>
+</Canvas>

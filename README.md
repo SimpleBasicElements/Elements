@@ -6,10 +6,4 @@
 
 The goal of this project is to create a library of CustomElement to stop reinventing the wheel (starting by reinventing the wheel using CustomElements).
 
-## Elements
-
-- [modal-dialog](https://simplebasicelements.github.io/Elements/src/modal-dialog)
-- [nav-tabs](https://simplebasicelements.github.io/Elements/src/nav-tabs)
-- [scroll-top](https://simplebasicelements.github.io/Elements/src/scroll-top)
-- [cookie-banner](https://simplebasicelements.github.io/Elements/src/cookie-banner)
-- [textarea-autogrow](https://simplebasicelements.github.io/Elements/src/textarea-autogrow)
+[Storybook](https://simplebasicelements.github.io/Elements/)

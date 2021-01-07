@@ -1,9 +1,9 @@
 require('expect-puppeteer')
 
-const dirname = require('path').basename(__dirname)
-
 beforeEach(async () => {
-  await page.goto(`http://localhost:6006/iframe.html?id=textareaautogrow--default&viewMode=story`)
+  await page.goto(
+    `http://localhost:6006/iframe.html?id=textareaautogrow--default&viewMode=story`
+  )
 })
 
 function textareaHeight () {

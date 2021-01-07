@@ -1,13 +1,13 @@
 require('expect-puppeteer')
 
-const dirname = require('path').basename(__dirname)
-
 beforeEach(async () => {
   const cookies = await page.cookies()
   for (const cookie of cookies) {
     await page.deleteCookie(cookie)
   }
-  await page.goto(`http://localhost:6006/iframe.html?id=cookiebanner--default-story&viewMode=story`)
+  await page.goto(
+    `http://localhost:6006/iframe.html?id=cookiebanner--default-story&viewMode=story`
+  )
 })
 
 describe('#cookie-banner', () => {

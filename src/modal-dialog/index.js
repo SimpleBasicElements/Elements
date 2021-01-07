@@ -71,7 +71,7 @@ export default class ModalDialog extends HTMLElement {
 
   close () {
     const event = new CustomEvent('close', {
-      detail: {close: true},
+      detail: { close: true },
       cancelable: true
     })
     this.dispatchEvent(event)

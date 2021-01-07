@@ -1,12 +1,11 @@
 require('expect-puppeteer')
 
-const dirname = require('path').basename(__dirname)
-
 describe('Tabs custom element', () => {
-
   describe('#Tabs with links', () => {
     beforeEach(async () => {
-      await page.goto(`http://localhost:6006/iframe.html?id=navtabs--default&viewMode=story`)
+      await page.goto(
+        `http://localhost:6006/iframe.html?id=navtabs--default&viewMode=story`
+      )
     })
 
     describe('#Arrow Navigation', () => {
@@ -27,7 +26,9 @@ describe('Tabs custom element', () => {
 
     describe('#Hash Navigation', () => {
       it('should handle hash change navigation', async () => {
-        await page.goto(`http://localhost:6006/iframe.html?id=navtabs--default&viewMode=story#tab2link`)
+        await page.goto(
+          `http://localhost:6006/iframe.html?id=navtabs--default&viewMode=story#tab2link`
+        )
         const selectedTab = await page.$('[aria-selected="true"]')
         await expect(selectedTab).toMatch('Tab 2')
       })
@@ -51,7 +52,9 @@ describe('Tabs custom element', () => {
 
   describe('#Tabs with button', () => {
     beforeEach(async () => {
-      await page.goto(`http://localhost:6006/iframe.html?id=navtabs--with-buttons&viewMode=story`)
+      await page.goto(
+        `http://localhost:6006/iframe.html?id=navtabs--with-buttons&viewMode=story`
+      )
     })
     it('should select the first button', async () => {
       const selectedElement = await page.$('[aria-selected="true"]')

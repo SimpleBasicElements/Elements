@@ -29,8 +29,8 @@
   },
   "scripts": {
     "serve": "http-server ./src -p 8080",
-    "format": "prettier-standard  '**/*.{js,css,html}' --format",
-    "lint": "prettier-standard  '**/*.{js,css,html}' --lint",
+    "format": "prettier-standard  'src/**/*.{js,css,html}' --format",
+    "lint": "prettier-standard  'src/**/*.{js,css,html}' --lint",
     "test": "jest",
     "storybook": "start-storybook -p 6006 --quiet --ci",
     "build-storybook": "build-storybook",

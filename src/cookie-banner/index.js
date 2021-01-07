@@ -37,7 +37,6 @@ function readCookie () {
 }
 
 export default class CookieBanner extends HTMLElement {
-
   connectedCallback () {
     if (readCookie() !== null) {
       if (this.parentElement) {

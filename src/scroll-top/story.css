@@ -2,7 +2,7 @@
   padding: 20px;
   width: 80%;
   height: 200vw;
-  background-color: rgba(0,0,0,.05);
+  background-color: rgba(0, 0, 0, 0.05);
   margin: 50px auto;
 }
 
@@ -14,12 +14,12 @@
   align-items: center;
   justify-content: center;
   border-radius: 4px;
-  color: #FFF;
+  color: #fff;
   position: fixed;
   right: 25px;
   bottom: 25px;
   opacity: 1;
-  transition: opacity .3s;
+  transition: opacity 0.3s;
   transform: rotate(180deg);
   font-weight: bold;
   cursor: pointer;

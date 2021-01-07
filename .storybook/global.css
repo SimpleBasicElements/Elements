@@ -27,13 +27,13 @@ body {
 
 button {
   box-shadow: 0 1px 2px 0 #0000000d;
-  padding: .5rem .75rem;
+  padding: 0.5rem 0.75rem;
   border: solid 1px #d1d5db;
   background-color: #fff;
   font-weight: 500;
   border-radius: 4px;
   cursor: pointer;
-  transition: background-color .3s;
+  transition: background-color 0.3s;
 }
 
 button:hover {

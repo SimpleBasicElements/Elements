@@ -1,7 +1,5 @@
 require('expect-puppeteer')
 
-const dirname = require('path').basename(__dirname)
-
 async function nextAnimationFrame (page) {
   return page.evaluate(
     () =>
@@ -11,12 +9,14 @@ async function nextAnimationFrame (page) {
   )
 }
 
-beforeEach(async () => {
-  await page.goto(`http://localhost:6006/iframe.html?id=scrolltop--default&viewMode=story`)
-  await page.keyboard.press('Tab')
-})
-
 describe('#scroll-top', () => {
+  beforeEach(async () => {
+    await page.goto(
+      `http://localhost:6006/iframe.html?id=scrolltop--default&viewMode=story`
+    )
+    await page.keyboard.press('Tab')
+  })
+
   it('should not be visible by default', async () => {
     const box = await (await page.$('scroll-top')).boundingBox()
     expect(box).toBeNull()
@@ -31,7 +31,7 @@ describe('#scroll-top', () => {
 
   it('should scroll top on click', async () => {
     await page.evaluate(async el => window.scrollBy(0, window.innerHeight))
-    await page.waitForSelector('scroll-top', {visible: true})
+    await page.waitForSelector('scroll-top', { visible: true })
     const previousScrollY = await page.evaluate(_ => window.scrollY)
     const scrollTop = await page.$('scroll-top')
     await scrollTop.click()

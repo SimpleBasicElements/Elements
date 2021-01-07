@@ -10,7 +10,7 @@ module.exports = async function globalSetup (globalConfig) {
     protocol: 'http',
     port: 6006,
     waitOnScheme: {
-      resources: ['http://localhost:6006/iframe.html'],
+      resources: ['http://localhost:6006/iframe.html']
     }
   })
 }

@@ -2,7 +2,7 @@ import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
 import NavTabs from './index';
 import './story.css'
 
-<Meta title="Elements/nav-tabs" id="navtabs" argTypes={{
+<Meta title="Elements/nav-tabs" id="nav-tabs" argTypes={{
   button: {control: 'boolean', defaultValue: false}
 }}/>
 
@@ -92,7 +92,7 @@ You can also use buttons (if you don't want anchors navigation).
 ```
 
 <Canvas>
-  <Story name="WithButtons" args={{button: true}}>
+  <Story name="buttons" args={{button: true}}>
     {Template.bind({})}
   </Story>
 </Canvas>

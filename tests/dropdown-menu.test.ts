@@ -1,14 +1,14 @@
 import { test, expect } from "@playwright/test";
 import { loadStory } from "./utils";
 
-test.describe("DropdownMenu", async () => {
-  loadStory("dropdownmenu");
+test.describe("<dropdown-menu/>", async () => {
+  loadStory("dropdown-menu");
 
   test.beforeEach(async ({ page }) => {
     await page.keyboard.press("Tab");
   });
 
-  test.describe("#Keyboard Navigation", () => {
+  test.describe("Keyboard Navigation", () => {
     ["Enter", "Space", "ArrowDown"].forEach((key) => {
       test(`should focus on ${key} on arrow navigation`, async ({ page }) => {
         await page.keyboard.press(key);
@@ -79,7 +79,7 @@ test.describe("DropdownMenu", async () => {
     });
   });
 
-  test.describe("#Mouse Navigation", () => {
+  test.describe("Mouse Navigation", () => {
     test("should open on click", async ({ page }) => {
       await page.click('[role="button"]');
       await expect(page.locator('[role="menu"]')).toBeVisible();
@@ -92,7 +92,7 @@ test.describe("DropdownMenu", async () => {
     });
   });
 
-  test.describe("#Aria attributes", () => {
+  test.describe("Aria attributes", () => {
     test("should put the right attributes on the button", async ({ page }) => {
       await expect(page.locator("[role=button]")).toHaveAttribute(
         "aria-haspopup",

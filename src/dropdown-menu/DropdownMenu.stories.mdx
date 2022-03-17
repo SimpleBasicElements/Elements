@@ -2,7 +2,7 @@ import {Meta, Story, Canvas, ArgsTable} from '@storybook/addon-docs/blocks';
 import {DropdownMenu, DropdownMenuContent} from './index';
 import './story.css'
 
-<Meta title="Elements/dropdown-menu" id="dropdownmenu" argTypes={{
+<Meta title="Elements/dropdown-menu" id="dropdown-menu" argTypes={{
   onAccept: {action: 'onAccept'},
   onReject: {action: 'onReject'},
 }}/>
@@ -19,16 +19,16 @@ export const Template = ({label, ...args}) => {
   div.innerHTML = `
    <dropdown-menu>
     <button id="menu">Show more information</button>
-        <dropdown-menu-content hidden>
+      <dropdown-menu-content hidden>
         <ul>
-        <li><a id="first-link" href="#">First link</a></li>
-        <li><a id="second-link" href="#">Second link</a></li>
+          <li><a id="first-link" href="#">First link</a></li>
+          <li><a id="second-link" href="#">Second link</a></li>
         </ul>
         <hr>
         <ul>
-        <li><a id="last-link" href="#">Third link</a></li>
+          <li><a id="last-link" href="#">Third link</a></li>
         </ul>
-       </dropdown-menu-content>
+     </dropdown-menu-content>
     </dropdown-menu>
   `
   return div

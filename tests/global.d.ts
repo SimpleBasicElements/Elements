@@ -1,8 +1,7 @@
-import { ElementHandle } from 'puppeteer'
-
 declare global {
-  namespace jest {
+  namespace PlaywrightTest {
     interface Matchers<R> {
+      toBeWithinRange(a: number, b: number): R;
       toBeVisible(): Promise<R>;
       toBeHidden(): Promise<R>;
       toHaveHTML(expectedHTML: string): Promise<R>;

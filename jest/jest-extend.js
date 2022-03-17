@@ -37,7 +37,7 @@ expect.extend({
     )
     const hidden = await received.evaluate(el => {
       return (
-        el.getAttribute('hidden') === 'hidden' &&
+        ['hidden', ''].includes(el.getAttribute('hidden')) ||
         el.getAttribute('aria-hidden') === 'true'
       )
     })
@@ -67,5 +67,46 @@ expect.extend({
         )
       }
     }
+  },
+
+  /**
+   * @param {string} selector
+   * @param {string} attribute
+   * @param {any} expectedValue
+   * @return {{pass: boolean, message: (function(): string)}|{pass: boolean, message: (function(): string)}}
+   */
+  async toHaveAttribute (selector, attribute, expectedValue) {
+    const value = await page.$eval(selector, (element, attribute) => element?.getAttribute(attribute), attribute)
+    const pass = value === expectedValue
+
+    return {
+      pass,
+      message: () => {
+        return (
+          this.utils.matcherHint('toHaveAttribute', selector, attribute) +
+          '\n\n' +
+          `Expected: ${this.utils.printExpected(expectedValue)}\n` +
+          `Received: ${this.utils.printReceived(value)}`
+        )
+      }
+    }
+  },
+
+  /**
+   * @param {string} selector
+   * @return {{pass: boolean, message: (function(): string)}|{pass: boolean, message: (function(): string)}}
+   */
+  async toBeFocused (selector) {
+    const pass = await page.$eval(selector, (element) => element === document.activeElement)
+
+    return {
+      pass,
+      message: () => {
+        return (
+          this.utils.matcherHint('toBeFocused', selector)
+        )
+      }
+    }
   }
+
 })

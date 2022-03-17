@@ -24,7 +24,7 @@
     "jest": "^25.2.4",
     "jest-dev-server": "^4.4.0",
     "jest-puppeteer": "^4.4.0",
-    "prettier-standard": "^16.2.1",
+    "prettier": "^2.6.0",
     "puppeteer": "^5.5.0"
   },
   "scripts": {
@@ -35,6 +35,5 @@
     "storybook": "start-storybook -p 6006 --quiet --ci",
     "build-storybook": "build-storybook",
     "gh": "npm run build-storybook && gh-pages -d storybook-static"
-
   }
 }

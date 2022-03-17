@@ -7,6 +7,8 @@ declare global {
       toBeHidden(): Promise<R>;
       toHaveHTML(expectedHTML: string): Promise<R>;
       toClick(selector: string): Promise<R>;
+      toHaveAttribute(attribute: string, value: any): Promise<R>;
+      toBeFocused(): Promise<R>;
     }
   }
 }
